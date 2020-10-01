@@ -94,6 +94,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.threeten</groupId>
+                <artifactId>threetenbp</artifactId>
+                <version>1.4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.errorprone</groupId>
+                <artifactId>error_prone_annotations</artifactId>
+                <version>2.4.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -159,6 +169,17 @@
                                 </requirePluginVersions>
                             </rules>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>dependency-convergence</id>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence/>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
