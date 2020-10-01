@@ -17,11 +17,13 @@
     <properties>
         <java.version>15</java.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
-        <maven-site-plugin.version>3.3</maven-site-plugin.version>
+        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
         <maven-reactor-plugin.version>1.1</maven-reactor-plugin.version>
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+        <maven.versions.plugin>2.4</maven.versions.plugin>
         <threetenbp.version>1.4.4</threetenbp.version>
         <error_prone_annotations.version>2.4.0</error_prone_annotations.version>
+        <maven-enforcer-plugin.require-maven-version>3.6.3</maven-enforcer-plugin.require-maven-version>
     </properties>
 
     <dependencies>
@@ -141,8 +143,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>15</source>
-                    <target>15</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -186,7 +188,24 @@
                             <goal>enforce</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>${maven-enforcer-plugin.require-maven-version}</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
