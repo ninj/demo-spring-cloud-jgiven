@@ -19,6 +19,7 @@
       by the spring BOMs will use an older version for stability.
     - `display-plugin-updates` doesn't produce too much output, but effectively has the same problem as
       `display-dependency-updates`.
+  - `forbiddenapis` plugin used to detect use of apis we want to avoid.
   - unsolved scenarios:
     - for some plugins and dependencies we specify a version as a property, because the parent POM and dependency BOMs
       do not specify a version or use too old a version. However, if a newer parent POM or dependency BOM defines the
