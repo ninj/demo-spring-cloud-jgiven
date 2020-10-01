@@ -17,6 +17,11 @@
     <properties>
         <java.version>15</java.version>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <maven-site-plugin.version>3.3</maven-site-plugin.version>
+        <maven-reactor-plugin.version>1.1</maven-reactor-plugin.version>
+        <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+        <threetenbp.version>1.4.4</threetenbp.version>
+        <error_prone_annotations.version>2.4.0</error_prone_annotations.version>
     </properties>
 
     <dependencies>
@@ -97,12 +102,12 @@
             <dependency>
                 <groupId>org.threeten</groupId>
                 <artifactId>threetenbp</artifactId>
-                <version>1.4.4</version>
+                <version>${threetenbp.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.errorprone</groupId>
                 <artifactId>error_prone_annotations</artifactId>
-                <version>2.4.0</version>
+                <version>${error_prone_annotations.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -113,17 +118,17 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>${maven-site-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-reactor-plugin</artifactId>
-                    <version>1.1</version>
+                    <version>${maven-reactor-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-eclipse-plugin</artifactId>
-                    <version>2.10</version>
+                    <version>${maven-eclipse-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
