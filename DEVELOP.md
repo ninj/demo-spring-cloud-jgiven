@@ -20,8 +20,35 @@
     - `display-plugin-updates` doesn't produce too much output, but effectively has the same problem as
       `display-dependency-updates`.
   - `forbiddenapis` plugin used to detect use of apis we want to avoid.
-  - unsolved scenarios:
-    - for some plugins and dependencies we specify a version as a property, because the parent POM and dependency BOMs
-      do not specify a version or use too old a version. However, if a newer parent POM or dependency BOM defines the
-      dependency or plugin properly then this will result in an unnecessary or possibly conflicting definition in our
-      local POM.
+  - `jgiven-maven-plugin` is used to generate html report in `verify` phase.
+    - potentially we could use a BDDTest marker and not fail fast on tests to generate failures for reports.
+  - Unsolved scenarios:
+    - Upgrades to plugins an dependencies:
+      - For some plugins and dependencies we specify a version as a property, because the parent POM and dependency BOMs
+        do not specify a version or use too old a version.
+      - However, if a newer parent POM or dependency BOM defines the dependency or plugin properly then this will result
+        in an unnecessary or possibly conflicting definition in our local POM.
+
+## jgiven
+
+- spring and junit5:
+  - Created spring scenario test base class as described in:
+    https://stackoverflow.com/questions/53972799/is-it-possible-to-combine-jgiven-spring-with-jgiven-junit-5
+  - Once next version of jgiven is released that class should be included by jgiven.
+- Although jgiven maven plugin works when running a maven build, the location for report files needs to be set via
+  system properties when running outside of maven.
+  - This is a problem when running tests in IDE as this isn't particularly convenient.
+  - Instead we mark the `/jgiven-reports` directory as ignored.
+- Also encountered an odd issue with HelloStage class not being recognised as being marked with `@JGivenStage` when
+  explicitly declared as a `@Bean` in an inner spring configuration class.
+  - Not sure what that was about, as separating the spring configuration class and picking up the stage via component
+    scanning appears to be a more sensible use-case anyway. 
+  
+
+## TODO
+
+[] spring formatter
+[] errorprone for compiler
+[] sdkman env for java version
+[] skaffold?
+[] docker image?

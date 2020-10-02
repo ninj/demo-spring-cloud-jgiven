@@ -24,6 +24,7 @@
         <threetenbp.version>1.4.4</threetenbp.version>
         <error_prone_annotations.version>2.4.0</error_prone_annotations.version>
         <maven-enforcer-plugin.require-maven-version>3.6.3</maven-enforcer-plugin.require-maven-version>
+        <jgiven.version>0.18.2</jgiven.version>
     </properties>
 
     <dependencies>
@@ -87,6 +88,24 @@
                 <exclusion>
                     <groupId>org.junit.vintage</groupId>
                     <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.jgiven</groupId>
+            <artifactId>jgiven-junit5</artifactId>
+            <version>${jgiven.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.jgiven</groupId>
+            <artifactId>jgiven-spring</artifactId>
+            <version>${jgiven.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.tngtech.jgiven</groupId>
+                    <artifactId>jgiven-junit</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -239,6 +258,21 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.tngtech.jgiven</groupId>
+                <artifactId>jgiven-maven-plugin</artifactId>
+                <version>${jgiven.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <format>html</format>
+                </configuration>
             </plugin>
         </plugins>
     </build>
