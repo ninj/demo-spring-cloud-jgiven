@@ -9,10 +9,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @JGivenStage
 class HelloStage extends Stage<HelloStage> {
-    @Autowired
-    ApplicationContext applicationContext;
 
-    public void app_ready() {
-        assertThat(applicationContext).isNotNull();
-    }
+	@Autowired
+	ApplicationContext applicationContext;
+
+	public void app_ready() {
+		assertThat(applicationContext).isNotNull();
+	}
+
 }

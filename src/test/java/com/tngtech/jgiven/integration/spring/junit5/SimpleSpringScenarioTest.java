@@ -9,18 +9,21 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Base class for Spring 5 and JUnit 5 test with only one stage class parameter.
- * <p>Taken from <a href="https://github.com/TNG/JGiven/tree/master/jgiven-spring-junit5">jgiven-spring-junit5</a>
- * source while we wait for artifact to be published.</p>
+ * <p>
+ * Taken from <a href=
+ * "https://github.com/TNG/JGiven/tree/master/jgiven-spring-junit5">jgiven-spring-junit5</a>
+ * source while we wait for artifact to be published.
+ * </p>
  *
  * @param <STAGE> the stage class
  * @since 1.0.0
  */
 @ExtendWith(SpringExtension.class)
-public class SimpleSpringScenarioTest<STAGE> extends
-        SimpleScenarioTest<STAGE> implements BeanFactoryAware {
+public class SimpleSpringScenarioTest<STAGE> extends SimpleScenarioTest<STAGE> implements BeanFactoryAware {
 
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) {
-        getScenario().setStageCreator(beanFactory.getBean(SpringStageCreator.class));
-    }
+	@Override
+	public void setBeanFactory(BeanFactory beanFactory) {
+		getScenario().setStageCreator(beanFactory.getBean(SpringStageCreator.class));
+	}
+
 }

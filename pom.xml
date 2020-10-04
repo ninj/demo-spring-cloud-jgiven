@@ -25,6 +25,7 @@
         <error_prone_annotations.version>2.4.0</error_prone_annotations.version>
         <maven-enforcer-plugin.require-maven-version>3.6.3</maven-enforcer-plugin.require-maven-version>
         <jgiven.version>0.18.2</jgiven.version>
+        <spring-javaformat-maven-plugin.version>0.0.25</spring-javaformat-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -273,6 +274,20 @@
                 <configuration>
                     <format>html</format>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.spring.javaformat</groupId>
+                <artifactId>spring-javaformat-maven-plugin</artifactId>
+                <version>${spring-javaformat-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <inherited>true</inherited>
+                        <goals>
+                            <goal>apply</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

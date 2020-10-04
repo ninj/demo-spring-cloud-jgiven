@@ -22,6 +22,7 @@
   - `forbiddenapis` plugin used to detect use of apis we want to avoid.
   - `jgiven-maven-plugin` is used to generate html report in `verify` phase.
     - potentially we could use a BDDTest marker and not fail fast on tests to generate failures for reports.
+  - `spring-javaformat-maven-plugin` is wired into the process-sources phase to automatically reformat source code.
   - Unsolved scenarios:
     - Upgrades to plugins an dependencies:
       - For some plugins and dependencies we specify a version as a property, because the parent POM and dependency BOMs
@@ -44,11 +45,22 @@
   - Not sure what that was about, as separating the spring configuration class and picking up the stage via component
     scanning appears to be a more sensible use-case anyway. 
   
+## spring javaformat
+
+- spring javaformat still insists on _tabs_ instead of spaces (which is totally weird).
+- But considering auto-formatters are supposed to take away the problem, how much should we bother?
+- Like the way that the spring javaformat intellij plugin auto-activates when the jar is in the classpath, that way you
+  don't have to turn it on in the settings.
+  - No point in trying to post-process tabs into spaces after the maven plugin runs as this will just annoy the IDE
+    plugin.
+- Looked at the google java formatter, but you have to turn on the intellij formatter manually.
+- XML, etc. could be covered by `spotless`, I guess, but we don't really have a problem there at the moment.
+
 
 ## TODO
 
-[] spring formatter
 [] errorprone for compiler
 [] sdkman env for java version
 [] skaffold?
 [] docker image?
+[] spring javaformat checkstyle? needs IDE plugin too.

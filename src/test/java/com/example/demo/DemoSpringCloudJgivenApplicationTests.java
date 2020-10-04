@@ -7,9 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = TestConfig.class)
 class DemoSpringCloudJgivenApplicationTests extends SimpleSpringScenarioTest<HelloStage> {
 
-    @Test
-    void contextLoads() {
-        then().app_ready();
-    }
+	@Test
+	void contextLoads() {
+		then().app_ready();
+	}
 
 }
