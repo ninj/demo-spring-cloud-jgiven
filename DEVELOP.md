@@ -4,8 +4,6 @@
 
 - This project uses `maven-wrapper`:
   - Use `./mvnw` from the command-line.
-  - If using intellij with the jenv maven wrapper plugin, you need to run `./mvnw` from the command-line first to
-    trigger installation.
   - `maven-enforcer-plugin` is used:
     - To force plugin versions to be declared (via `pluginManagement`.)
     - To force dependency convergence (via `dependencyManagement`.)
@@ -30,6 +28,14 @@
       - However, if a newer parent POM or dependency BOM defines the dependency or plugin properly then this will result
         in an unnecessary or possibly conflicting definition in our local POM.
 
+## Intellij plugins
+
+- Error Prone Compiler - if not picked up when imported into IDE, enable with:
+  
+  File | Settings | Compiler | 'Java Compiler' and select 'Javac with error-prone' in 'Use compiler' box. 
+- Maven Wrapper Plugin (jenv) - IDE plugin does not install maven binary, user needs to run `./mvnw` to trigger install.
+- spring-javaformat - should auto activate when jar in classpath.
+ 
 ## jgiven
 
 - spring and junit5:
@@ -59,8 +65,8 @@
 
 ## TODO
 
-[] errorprone for compiler
 [] sdkman env for java version
 [] skaffold?
 [] docker image?
 [] spring javaformat checkstyle? needs IDE plugin too.
+[] override project config inherited from parent pom.
