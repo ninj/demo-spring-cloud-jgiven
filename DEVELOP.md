@@ -69,4 +69,4 @@
 [] skaffold?
 [] docker image?
 [] spring javaformat checkstyle? needs IDE plugin too.
-[] override project config inherited from parent pom.
+[] change maven unit test config not to fail fast so more like ide and should be fast anyway

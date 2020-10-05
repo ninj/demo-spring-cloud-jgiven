@@ -13,6 +13,22 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>demo-spring-cloud-jgiven</name>
     <description>Demo project for Spring Boot</description>
+    <url>https://github.com/ninj/demo-spring-cloud-jgiven</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>ninj</name>
+            <organization>metahq</organization>
+        </developer>
+    </developers>
+    <scm>
+        <url>https://github.com/ninj/demo-spring-cloud-jgiven</url>
+    </scm>
 
     <properties>
         <java.version>15</java.version>
