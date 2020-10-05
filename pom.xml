@@ -26,6 +26,7 @@
         <maven-enforcer-plugin.require-maven-version>3.6.3</maven-enforcer-plugin.require-maven-version>
         <jgiven.version>0.18.2</jgiven.version>
         <spring-javaformat-maven-plugin.version>0.0.25</spring-javaformat-maven-plugin.version>
+        <forbiddenapis.version>3.1</forbiddenapis.version>
     </properties>
 
     <dependencies>
@@ -230,7 +231,7 @@
             <plugin>
                 <groupId>de.thetaphi</groupId>
                 <artifactId>forbiddenapis</artifactId>
-                <version>3.1</version>
+                <version>${forbiddenapis.version}</version>
                 <configuration>
                     <!--
                       if the used Java version is too new,
