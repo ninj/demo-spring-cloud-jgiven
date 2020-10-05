@@ -22,7 +22,7 @@
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven.versions.plugin>2.4</maven.versions.plugin>
         <threetenbp.version>1.4.4</threetenbp.version>
-        <error_prone_annotations.version>2.4.0</error_prone_annotations.version>
+        <error_prone.version>2.4.0</error_prone.version>
         <maven-enforcer-plugin.require-maven-version>3.6.3</maven-enforcer-plugin.require-maven-version>
         <jgiven.version>0.18.2</jgiven.version>
         <spring-javaformat-maven-plugin.version>0.0.25</spring-javaformat-maven-plugin.version>
@@ -130,7 +130,7 @@
             <dependency>
                 <groupId>com.google.errorprone</groupId>
                 <artifactId>error_prone_annotations</artifactId>
-                <version>${error_prone_annotations.version}</version>
+                <version>${error_prone.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
