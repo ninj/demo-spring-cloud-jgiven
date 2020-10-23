@@ -1,12 +1,12 @@
 package com.example.demo.qz;
 
 import com.example.demo.HelloStage;
+import com.example.demo.SimpleSpringST;
 import com.example.demo.SpringBootJGivenTest;
-import com.tngtech.jgiven.integration.spring.junit5.SimpleSpringScenarioTest;
 import org.junit.jupiter.api.Test;
 
 @SpringBootJGivenTest
-public class QuartzTest extends SimpleSpringScenarioTest<HelloStage> {
+public class QuartzST extends SimpleSpringST<HelloStage> {
 
 	@Test
 	void scheduler_can_be_obtained() {

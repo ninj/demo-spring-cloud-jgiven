@@ -19,7 +19,8 @@
       `display-dependency-updates`.
   - `forbiddenapis` plugin used to detect use of apis we want to avoid.
   - `jgiven-maven-plugin` is used to generate html report in `verify` phase.
-    - potentially we could use a BDDTest marker and not fail fast on tests to generate failures for reports.
+  - `maven-failsafe-plugin` is ordered _after_ `jgiven-maven-plugin` to ensure the jgiven report are generated before a
+    build is failed. 
   - `spring-javaformat-maven-plugin` is wired into the process-sources phase to automatically reformat source code.
   - Unsolved scenarios:
     - Upgrades to plugins an dependencies:
@@ -49,7 +50,10 @@
 - Also encountered an odd issue with HelloStage class not being recognised as being marked with `@JGivenStage` when
   explicitly declared as a `@Bean` in an inner spring configuration class.
   - Not sure what that was about, as separating the spring configuration class and picking up the stage via component
-    scanning appears to be a more sensible use-case anyway. 
+    scanning appears to be a more sensible use-case anyway.
+- Scenario tests are suffixed with `ST` rather than `Test` to avoid scenario tests being picked up by
+  `maven-surefire-plugin`, which will fail the build before reports can be generated if a test fails.
+- `ST` suffix is configured with via `@JGivenConfiguration` annotation on the `SimpleSpringST` base class. 
   
 ## spring javaformat
 
@@ -62,6 +66,23 @@
 - Looked at the google java formatter, but you have to turn on the intellij formatter manually.
 - XML, etc. could be covered by `spotless`, I guess, but we don't really have a problem there at the moment.
 
+## pubsub emulator
+
+- https://cloud.google.com/pubsub/docs/emulator
+- https://stackoverflow.com/questions/51290024/spring-boot-cloud-gcp-cannot-connect-to-local-google-pubsub-emulator
+- https://stackoverflow.com/questions/54988955/how-to-connect-spring-gcp-pubsubtemplate-to-local-instance
+- `gcloud beta emulators pubsub start --project=PUBSUB_PROJECT_ID [options]` where `PUBSUB_PROJECT_ID` can be any
+  syntactically valid id.
+
+## Oddities
+
+- spring integration http inbound gateway issues
+  - has trouble serializing empty map, throwing '*' not allowed for Content-Type
+  - trying to restrict via request-mapping produces=application/json does not work
+  - trying to set response header does not work
+  - trying to set view as jsonView does not work
+  - adding Accept: application/json works
+  - changing response value to simple type works
 
 ## TODO
 
@@ -69,4 +90,3 @@
 [] skaffold?
 [] docker image?
 [] spring javaformat checkstyle? needs IDE plugin too.
-[] change maven unit test config not to fail fast so more like ide and should be fast anyway

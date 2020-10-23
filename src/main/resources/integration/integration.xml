@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-http="http://www.springframework.org/schema/integration/http"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    https://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration
+    https://www.springframework.org/schema/integration/spring-integration.xsd
+    http://www.springframework.org/schema/integration/http
+    https://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
+
+    <int-http:inbound-gateway id="inboundGateway"
+                              request-channel="requests"
+                              reply-channel="responses"
+                              path="/hello">
+    </int-http:inbound-gateway>
+
+    <int:channel id="requests" />
+    <int:channel id="responses"/>
+
+    <int:chain id="process"
+               input-channel="requests"
+               output-channel="responses">
+        <int:object-to-json-transformer />
+        <int:service-activator ref="messageSender">
+            <int:request-handler-advice-chain>
+                <ref bean="exampleAdvice"/>
+            </int:request-handler-advice-chain>
+        </int:service-activator>
+        <int:header-enricher>
+            <int:header name="http_statusCode" value="202"/>
+        </int:header-enricher>
+    </int:chain>
+
+</beans>
