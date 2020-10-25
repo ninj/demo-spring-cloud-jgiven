@@ -25,7 +25,7 @@
         <int:object-to-json-transformer />
         <int:service-activator ref="messageSender">
             <int:request-handler-advice-chain>
-                <ref bean="exampleAdvice"/>
+                <bean class="com.example.demo.si.InputIdentityAdvice"/>
             </int:request-handler-advice-chain>
         </int:service-activator>
         <int:header-enricher>
