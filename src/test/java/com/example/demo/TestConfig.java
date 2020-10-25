@@ -10,11 +10,12 @@ import org.springframework.messaging.MessageHandler;
 @EnableJGiven
 class TestConfig {
 
-    @SuppressWarnings("unused")
-    @MockBean
+	@SuppressWarnings("unused")
+	@MockBean
 	private PubSubAdmin pubsubAdmin;
 
-    @SuppressWarnings("unused")
-    @MockBean(name = "messageSender")
+	@SuppressWarnings("unused")
+	@MockBean(name = "messageSender")
 	private MessageHandler messageSender;
+
 }

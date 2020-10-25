@@ -28,10 +28,10 @@ public class HelloStage extends Stage<HelloStage> {
 	SchedulerFactoryBean factoryBean;
 
 	@Autowired
-    TestRestTemplate testRestTemplate;
+	TestRestTemplate testRestTemplate;
 
 	@Autowired
-    MessageHandler messageSender;
+	MessageHandler messageSender;
 
 	@Value("http://localhost:${local.server.port}/hello")
 	String url;
@@ -39,9 +39,9 @@ public class HelloStage extends Stage<HelloStage> {
 	@ProvidedScenarioState
 	private Scheduler scheduler;
 
-    private ResponseEntity<Void> responseEntity;
+	private ResponseEntity<Void> responseEntity;
 
-    public void app_ready() {
+	public void app_ready() {
 		assertThat(applicationContext).isNotNull();
 	}
 
@@ -54,12 +54,12 @@ public class HelloStage extends Stage<HelloStage> {
 	}
 
 	public void webhook_request_sent() {
-        responseEntity = testRestTemplate.postForEntity(url, "request", Void.class);
-    }
+		responseEntity = testRestTemplate.postForEntity(url, "request", Void.class);
+	}
 
 	public HelloStage webhook_response_accepted() {
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
-        return this;
+		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);
+		return this;
 	}
 
 	public HelloStage webhook_payload_published_to_pubsub() {
