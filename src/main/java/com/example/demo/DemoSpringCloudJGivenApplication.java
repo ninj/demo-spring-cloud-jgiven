@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import com.google.api.gax.rpc.AlreadyExistsException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +19,15 @@ import javax.annotation.PostConstruct;
 @ImportResource("/integration/integration.xml")
 public class DemoSpringCloudJGivenApplication {
 
-	public static void main(String[] args) {
+    private static final Logger logger = LoggerFactory.getLogger(DemoSpringCloudJGivenApplication.class);
+    private final PubSubAdmin pubSubAdmin;
+
+    @Autowired
+    public DemoSpringCloudJGivenApplication(PubSubAdmin pubSubAdmin) {
+        this.pubSubAdmin = pubSubAdmin;
+    }
+
+    public static void main(String[] args) {
 		SpringApplication.run(DemoSpringCloudJGivenApplication.class, args);
 	}
 
@@ -28,16 +38,14 @@ public class DemoSpringCloudJGivenApplication {
 		return messageHandler;
 	}
 
-	@Autowired
-	PubSubAdmin pubSubAdmin;
-
 	@PostConstruct
 	public void init() {
 		try {
-//			pubSubAdmin.createTopic("topicName");
+			 pubSubAdmin.createTopic("topicName");
+			 logger.info("topic created: topicName");
 		}
 		catch (AlreadyExistsException ex) {
-			// ignored
+			logger.info("topic already exists: topicName");
 		}
 	}
 
