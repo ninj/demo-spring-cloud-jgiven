@@ -32,12 +32,12 @@
 
     <properties>
         <java.version>15</java.version>
-        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
         <maven-reactor-plugin.version>1.1</maven-reactor-plugin.version>
         <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
         <maven.versions.plugin>2.4</maven.versions.plugin>
-        <threetenbp.version>1.4.4</threetenbp.version>
+        <threetenbp.version>1.5.0</threetenbp.version>
         <error_prone.version>2.4.0</error_prone.version>
         <maven-enforcer-plugin.require-maven-version>3.6.3</maven-enforcer-plugin.require-maven-version>
         <jgiven.version>0.18.2</jgiven.version>
@@ -267,6 +267,9 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <rulesUri>file://${project.basedir}/.mvn/maven-version-rules.xml</rulesUri>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>de.thetaphi</groupId>
