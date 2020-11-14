@@ -19,15 +19,16 @@ import javax.annotation.PostConstruct;
 @ImportResource("/integration/integration.xml")
 public class DemoSpringCloudJGivenApplication {
 
-    private static final Logger logger = LoggerFactory.getLogger(DemoSpringCloudJGivenApplication.class);
-    private final PubSubAdmin pubSubAdmin;
+	private static final Logger logger = LoggerFactory.getLogger(DemoSpringCloudJGivenApplication.class);
 
-    @Autowired
-    public DemoSpringCloudJGivenApplication(PubSubAdmin pubSubAdmin) {
-        this.pubSubAdmin = pubSubAdmin;
-    }
+	private final PubSubAdmin pubSubAdmin;
 
-    public static void main(String[] args) {
+	@Autowired
+	public DemoSpringCloudJGivenApplication(PubSubAdmin pubSubAdmin) {
+		this.pubSubAdmin = pubSubAdmin;
+	}
+
+	public static void main(String[] args) {
 		SpringApplication.run(DemoSpringCloudJGivenApplication.class, args);
 	}
 
@@ -41,8 +42,8 @@ public class DemoSpringCloudJGivenApplication {
 	@PostConstruct
 	public void init() {
 		try {
-			 pubSubAdmin.createTopic("topicName");
-			 logger.info("topic created: topicName");
+			pubSubAdmin.createTopic("topicName");
+			logger.info("topic created: topicName");
 		}
 		catch (AlreadyExistsException ex) {
 			logger.info("topic already exists: topicName");
